@@ -1,6 +1,11 @@
 import {BaseController} from "./BaseController";
 
-export class UsersController extends BaseController {
+export class ItemsController extends BaseController {
+
+    public get(): [] {
+        return [];
+    }
+
     public add(): object {
         return {};
     }

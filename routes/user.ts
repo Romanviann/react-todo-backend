@@ -1,15 +1,15 @@
 import {Request, Response, NextFunction, Router} from "express";
-import {UsersController} from "../controllers/usersController";
+import {ItemsController} from "../controllers/itemsController";
 
 export class UserRouter {
 
     private readonly router: Router;
-    private readonly usersController: UsersController;
+    private readonly itemsController: ItemsController;
 
     constructor() {
         this.router = Router();
         this.initializeRoutes();
-        this.usersController = new UsersController();
+        this.itemsController = new ItemsController();
     }
 
     private initializeRoutes() {
@@ -17,7 +17,19 @@ export class UserRouter {
     }
 
     private getUserTodoList(req: Request, res: Response, next: NextFunction) {
-        res.send(this.usersController.add());
+        res.send(this.itemsController.get());
+    }
+
+    private addListItem(request: Request, res: Response, next: NextFunction) {
+        res.send(this.itemsController.add());
+    }
+
+    private markItemAsComplete(request: Request, res: Response, next: NextFunction) {
+        res.send(this.itemsController.update());
+    }
+
+    private deleteListItem(request: Request, res: Response, next: NextFunction) {
+        res.send(this.itemsController.delete());
     }
 
     public getRouter() {
