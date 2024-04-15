@@ -23,8 +23,8 @@ app.get('/', function(request, response, next) {
 app.use(express.json());
 app.use(logger("combined"));
 
-import userRouter from './routes/user';
-app.use('/user', userRouter);
+import listItemsRouter from './routes/listItems';
+app.use('/user', listItemsRouter);
 
 app.listen(process.env.PORT, () => {
     console.log(`running at https://localhost:${process.env.PORT}`);

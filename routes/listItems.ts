@@ -1,19 +1,22 @@
 import {Request, Response, NextFunction, Router} from "express";
-import {ItemsController} from "../controllers/itemsController";
+import {ListItemsController} from "../controllers/listItemsController";
 
-export class UserRouter {
+export class ListItemsRouter {
 
     private readonly router: Router;
-    private readonly itemsController: ItemsController;
+    private readonly itemsController: ListItemsController;
 
     constructor() {
         this.router = Router();
         this.initializeRoutes();
-        this.itemsController = new ItemsController();
+        this.itemsController = new ListItemsController();
     }
 
     private initializeRoutes() {
-        this.router.get('/:id/todo-list', this.getUserTodoList.bind(this));
+        this.router.get('/todo-list', this.getUserTodoList.bind(this));
+        this.router.post('/todo-list', this.addListItem.bind(this));
+        this.router.patch('/todo-list/:id', this.markItemAsComplete.bind(this));
+        this.router.delete('todo-list/:id', this.deleteListItem.bind(this));
     }
 
     private getUserTodoList(req: Request, res: Response, next: NextFunction) {
@@ -38,4 +41,4 @@ export class UserRouter {
 
 }
 
-export default new UserRouter().getRouter();
+export default new ListItemsRouter().getRouter();

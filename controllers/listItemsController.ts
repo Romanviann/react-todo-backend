@@ -1,6 +1,6 @@
 import {BaseController} from "./BaseController";
 
-export class ItemsController extends BaseController {
+export class ListItemsController extends BaseController {
 
     public get(): [] {
         return [];
