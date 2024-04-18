@@ -1,4 +1,4 @@
-import {Request, Response, NextFunction, Router} from "express";
+import {Request, Response, NextFunction, Router, response} from "express";
 import {ListItemsController} from "../controllers/listItemsController";
 
 export class ListItemsRouter {
@@ -19,20 +19,20 @@ export class ListItemsRouter {
         this.router.delete('todo-list/:id', this.deleteListItem.bind(this));
     }
 
-    private getUserTodoList(req: Request, res: Response, next: NextFunction) {
-        res.send(this.itemsController.get());
+    private getUserTodoList(request: Request, response: Response, next: NextFunction) {
+        return this.itemsController.get(request, response);
     }
 
-    private addListItem(request: Request, res: Response, next: NextFunction) {
-        res.send(this.itemsController.add());
+    private addListItem(request: Request, response: Response, next: NextFunction) {
+        return this.itemsController.add(request, response);
     }
 
-    private markItemAsComplete(request: Request, res: Response, next: NextFunction) {
-        res.send(this.itemsController.update());
+    private markItemAsComplete(request: Request, response: Response, next: NextFunction) {
+        return this.itemsController.update(request, response);
     }
 
-    private deleteListItem(request: Request, res: Response, next: NextFunction) {
-        res.send(this.itemsController.delete());
+    private deleteListItem(request: Request, response: Response, next: NextFunction) {
+        return this.itemsController.delete(request, response);
     }
 
     public getRouter() {

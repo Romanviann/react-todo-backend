@@ -1,6 +1,15 @@
+import {Request, Response} from "express";
+
 export abstract class BaseController {
 
-    public abstract add(): object;
-    public abstract delete(): boolean;
-    public abstract update(): object;
+    protected constructor() {
+    }
+
+    public abstract get(request: Request, response: Response): object;
+
+    public abstract add(request: Request, response: Response): object;
+
+    public abstract delete(request: Request, response: Response): boolean;
+
+    public abstract update(request: Request, response: Response): object;
 }

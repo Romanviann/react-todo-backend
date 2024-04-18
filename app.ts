@@ -16,15 +16,11 @@ function startDB() {
 
 startDB();
 
-app.get('/', function(request, response, next) {
-    response.send('React To-Do');
-});
-
 app.use(express.json());
 app.use(logger("combined"));
 
-import listItemsRouter from './routes/listItems';
-app.use('/user', listItemsRouter);
+import userListItemsRouter from './routes/listItems';
+app.use('/user', userListItemsRouter);
 
 app.listen(process.env.PORT, () => {
     console.log(`running at https://localhost:${process.env.PORT}`);
