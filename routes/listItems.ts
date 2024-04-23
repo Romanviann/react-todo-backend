@@ -1,4 +1,4 @@
-import {Request, Response, NextFunction, Router, response} from "express";
+import {Request, Response, NextFunction, Router} from "express";
 import {ListItemsController} from "../controllers/listItemsController";
 
 export class ListItemsRouter {

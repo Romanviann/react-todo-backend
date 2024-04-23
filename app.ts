@@ -1,10 +1,9 @@
 import express, {Express} from 'express';
 import mongoose from "mongoose";
+
 require('dotenv').config();
 import logger = require('morgan');
-
-
-const app: Express = express();
+import userListItemsRouter from './routes/listItems';
 
 function startDB() {
     try {
@@ -14,14 +13,15 @@ function startDB() {
     }
 }
 
-startDB();
+mongoose.connection.on('connected', () => {
+    const app: Express = express();
+    app.use(express.json());
+    app.use(logger("combined"));
+    app.use('/user', userListItemsRouter);
 
-app.use(express.json());
-app.use(logger("combined"));
-
-import userListItemsRouter from './routes/listItems';
-app.use('/user', userListItemsRouter);
-
-app.listen(process.env.PORT, () => {
-    console.log(`running at https://localhost:${process.env.PORT}`);
+    app.listen(process.env.PORT, () => {
+        console.log(`running at ${process.env.API_URL}:${process.env.PORT}`);
+    });
 });
+
+startDB();
