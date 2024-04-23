@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 require('dotenv').config();
 import logger = require('morgan');
 import userListItemsRouter from './routes/listItems';
+import indexRouter from './routes/index';
 
 function startDB() {
     try {
@@ -18,6 +19,7 @@ mongoose.connection.on('connected', () => {
     app.use(express.json());
     app.use(logger("combined"));
     app.use('/user', userListItemsRouter);
+    app.use('/', indexRouter);
 
     app.listen(process.env.PORT, () => {
         console.log(`running at ${process.env.API_URL}:${process.env.PORT}`);
