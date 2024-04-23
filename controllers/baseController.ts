@@ -9,7 +9,7 @@ export abstract class BaseController {
 
     public abstract add(request: Request, response: Response): object;
 
-    public abstract delete(request: Request, response: Response): boolean;
+    public abstract delete(request: Request, response: Response): object;
 
     public abstract update(request: Request, response: Response): object;
 }

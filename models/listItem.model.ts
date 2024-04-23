@@ -5,6 +5,8 @@ interface IListItem extends Document {
     title: string;
     description: string;
     isCompleted: boolean;
+    createdAt: Date;
+    updatedAt: Date;
 }
 
 const ListItemSchema = new mongoose.Schema({
