@@ -22,7 +22,10 @@ export class ListItemsController extends BaseController {
 
     public async add(request: Request, response: Response) {
         try {
-            const payload = {title: request.body.title, description: request.body.description};
+            const payload = {
+                title: request.body.title,
+                description: request.body.description
+            };
             return response.json(await ListItemModel.create(payload))
         } catch (error: unknown) {
             if (error instanceof Error) {
@@ -33,7 +36,7 @@ export class ListItemsController extends BaseController {
 
     public async delete(request: Request, response: Response) {
         try {
-            return response.json(await ListItemModel.deleteOne({title: request.params.id}));
+            return response.json(await ListItemModel.deleteOne({_id: request.params.id}));
         } catch (error: unknown) {
             if (error instanceof Error) {
                 response.status(400).send({error: error.message});
@@ -41,8 +44,19 @@ export class ListItemsController extends BaseController {
         }
     }
 
-    public update(request: Request, response: Response): object {
-        return {};
+    public async update(request: Request, response: Response) {
+        try {
+            const payload = {
+                title: request.body.title,
+                description: request.body.description,
+                isCompleted: request.body.isCompleted
+            };
+            return response.json(await ListItemModel.findOneAndUpdate({_id: request.params.id}, payload, {new: true}));
+        } catch (error: unknown) {
+            if (error instanceof Error) {
+                response.status(400).send({error: error.message});
+            }
+        }
     }
 
 }
