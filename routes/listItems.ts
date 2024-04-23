@@ -16,7 +16,7 @@ export class ListItemsRouter {
         this.router.get('/todo-list', this.getUserTodoList.bind(this));
         this.router.post('/todo-list', this.addListItem.bind(this));
         this.router.patch('/todo-list/:id', this.markItemAsComplete.bind(this));
-        this.router.delete('todo-list/:id', this.deleteListItem.bind(this));
+        this.router.delete('/todo-list/:id', this.deleteListItem.bind(this));
     }
 
     private getUserTodoList(request: Request, response: Response, next: NextFunction) {
