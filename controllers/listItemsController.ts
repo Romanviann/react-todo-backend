@@ -10,7 +10,7 @@ export class ListItemsController extends BaseController {
 
     public async get(request: Request, response: Response) {
         try {
-            const listItems = await ListItemModel.find();
+            const listItems = await ListItemModel.find().sort({ createdAt: -1 });
             return response.json(listItems);
 
         } catch (error: unknown) {
