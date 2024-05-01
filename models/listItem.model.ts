@@ -1,5 +1,14 @@
 import mongoose from 'mongoose';
 
+interface IListItem extends Document {
+    id: string;
+    title: string;
+    description: string;
+    isCompleted: boolean;
+    createdAt: Date;
+    updatedAt: Date;
+}
+
 const ListItemSchema = new mongoose.Schema({
     id: {
         type: String,
@@ -22,6 +31,5 @@ const ListItemSchema = new mongoose.Schema({
     timestamps: true
 })
 
-const ListItemModel = mongoose.model("list-item", ListItemSchema);
-
-module.exports = ListItemModel;
+const ListItemModel = mongoose.model<IListItem>("list-item", ListItemSchema);
+export default ListItemModel;
